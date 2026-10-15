@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan Miller | Portfolio</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+        a { color: #2563eb; }
+        a:hover { color: #1d4ed8; text-decoration: underline; }
+
+        header {
+            background: #fff;
+            color: #0f172a;
+            padding: 14px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        header .inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        header strong { font-size: 18px; font-weight: 600; }
+        nav a {
+            color: #64748b;
+            text-decoration: none;
+            margin-left: 16px;
+            font-size: 14px;
+        }
+        nav a:hover { color: #0f172a; text-decoration: none; }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 32px 20px 56px;
+        }
+
+        /* Profile only — soft spring accent, rest of page stays neutral */
+        .hero {
+            background: linear-gradient(120deg, #ffffff 0%, #f8fdf9 100%);
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 24px;
+            align-items: center;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #5c6075;
+            box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -30px;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(96, 123, 153, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #677386;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+        .hero > div { position: relative; z-index: 1; }
+        .hero h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            color: #0f172a;
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+        .hero .tagline {
+            margin: 0;
+            color: #64748b;
+            font-size: 15px;
+        }
+        .hero .season {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 12px;
+            background: #ecfdf5;
+            color: #047857;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 999px;
+        }
+
+        section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+        section h2 {
+            margin: 0 0 14px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0f172a;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        section p { margin: 0 0 12px; color: #475569; }
+        section p:last-child { margin-bottom: 0; }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .skills li {
+            background: #f1f5f9;
+            color: #334155;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .skills li.soon {
+            background: #f8fafc;
+            color: #94a3b8;
+        }
+
+        .project-list,
+        .content-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .project-list li,
+        .content-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .project-list li:last-child,
+        .content-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .project-list h3,
+        .content-list h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .content-list h3 {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        .project-list .desc,
+        .content-list .desc {
+            margin: 0 0 8px;
+            color: #64748b;
+            font-size: 14px;
+        }
+        .project-list .tags,
+        .content-list .meta {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        .badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+        }
+        .contact-list li:last-child { border-bottom: none; }
+
+        footer {
+            text-align: center;
+            padding: 24px 20px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 560px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero img { margin: 0 auto; }
+            nav a { margin-left: 0; margin-right: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="inner">
+            <strong>Ethan Miller</strong>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#content">Content</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <img src="./profile-purple-cat.png" alt="Purple cat profile">
+            <div>
+                <h1>About</h1>
+                <p class="tagline">Learning HTML, CSS, and JS while building portfolio and content sites.</p>
+                <span class="season">Spring vibe</span>
+            </div>
+        </div>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm a student learning web development, building up from small practice projects.</p>
+            <p>
+                My hobbies are coding and creating content (YouTube).<br>
+                I like turning what I learn into websites I can share.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>Technologies I'm learning now or plan to learn soon.</p>
+            <ul class="skills">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li class="soon">JavaScript (coming soon)</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Pages from my HTML practice. Click a title to open the file.</p>
+            <ul class="project-list">
+                <li>
+                    <h3><a href="./ch2-b1-ai-practice.html">HTML Rules Example</a></h3>
+                    <p class="desc">A page covering HTML writing rules with h1, p, and img</p>
+                    <p class="tags">#HTML #basics</p>
+                </li>
+                <li>
+                    <h3><a href="./paragraph.html">Paragraph Self-Intro</a></h3>
+                    <p class="desc">Three intro paragraphs using p, hr, and br</p>
+                    <p class="tags">#p #hr #br</p>
+                </li>
+                <li>
+                    <h3><a href="./rules.html">HTML Writing Rules</a></h3>
+                    <p class="desc">Practice with tag pairs, attributes, and img alt</p>
+                    <p class="tags">#img #attributes</p>
+                </li>
+                <li>
+                    <h3><a href="./heading.html">Heading Tags Practice</a></h3>
+                    <p class="desc">A page using h1 through h6 heading tags</p>
+                    <p class="tags">#heading</p>
+                </li>
+                <li>
+                    <h3><a href="./index.html">HTML Practice Start</a></h3>
+                    <p class="desc">My first practice file — basic HTML structure</p>
+                    <p class="tags">#first-project</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="content">
+            <h2>Content in Progress</h2>
+            <p>Videos and posts I'm working on right now. Links will go here when they're ready.</p>
+            <ul class="content-list">
+                <li>
+                    <h3>
+                        Fashion Shorts — Inspired by Kill It
+                        <span class="badge">In Progress</span>
+                    </h3>
+                    <p class="desc">Creating fashion-related YouTube Shorts inspired by <em>Kill It</em> — styling, edits, and outfit ideas in short-form video.</p>
+                    <p class="meta">Category: Fashion · Platform: YouTube Shorts</p>
+                </li>
+                <li>
+                    <h3>
+                        HTML Study Log — Episode 1
+                        <span class="badge">In Progress</span>
+                    </h3>
+                    <p class="desc">Walking through my first portfolio page and what I learned from HTML practice files.</p>
+                    <p class="meta">Category: Coding · Platform: YouTube</p>
+                </li>
+                <li>
+                    <h3>
+                        Purple Cat Profile — Behind the Scenes
+                        <span class="badge">In Progress</span>
+                    </h3>
+                    <p class="desc">Short clip on how I picked a profile image and updated my portfolio site.</p>
+                    <p class="meta">Category: Web Dev · Platform: YouTube</p>
+                </li>
+                <li>
+                    <h3>
+                        Personal Media Hub (Site Build)
+                        <span class="badge">In Progress</span>
+                    </h3>
+                    <p class="desc">Planning a page to list YouTube videos, thumbnails, and categories — game, info, and more.</p>
+                    <p class="meta">Category: Project · Platform: Website</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact &amp; Social</h2>
+            <p>Click a link to open the page in a new tab. Replace each URL with your real profile address.</p>
+            <ul class="contact-list">
+                <li>Email: <a href="mailto:example@email.com">example@email.com</a></li>
+                <li>YouTube: <a href="https://www.youtube.com/channel/UCgpoMr5oHQ7O8PuDl3sUMeg" target="_blank" rel="noopener noreferrer">My YouTube channel</a></li>
+                <li>Instagram: <a href="https://www.instagram.com/your_username/" target="_blank" rel="noopener noreferrer">instagram.com/your_username</a></li>
+                <li>TikTok: <a href="https://www.tiktok.com/@your_username" target="_blank" rel="noopener noreferrer">tiktok.com/@your_username</a></li>
+                <li>Blog: <a href="https://your-blog-url.com" target="_blank" rel="noopener noreferrer">your-blog-url.com</a></li>
+                <li>Brunch Story: <a href="https://brunch.co.kr/@your-id" target="_blank" rel="noopener noreferrer">brunch.co.kr/@your-id</a></li>
+                <li>Medium: <a href="https://medium.com/@your-username" target="_blank" rel="noopener noreferrer">medium.com/@your-username</a></li>
+                <li>Xiaohongshu (小红书): <a href="https://www.xiaohongshu.com/user/profile/your-profile-id" target="_blank" rel="noopener noreferrer">xiaohongshu.com</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Salieo Miller · HTML Portfolio</p>
+    </footer>
+</body>
+</html>
